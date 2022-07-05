@@ -1,0 +1,9 @@
+redisson:
+  host: 192.168.144.163
+  port: 6379
+  password:
+  database:
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
