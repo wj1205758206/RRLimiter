@@ -2,6 +2,8 @@ package com.example.rrlimiter.redisson;
 
 
 import com.example.rrlimiter.counter.CounterService;
+import com.example.rrlimiter.leakybucket.LeakyBucketLimiter;
+import com.example.rrlimiter.leakybucket.LeakyBucketService;
 import com.example.rrlimiter.tokenbucket.TokenBucketService;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
@@ -24,6 +26,8 @@ public class RedissonController {
     CounterService counterService;
     @Resource
     TokenBucketService tokenBucketService;
+    @Resource
+    LeakyBucketService leakyBucketService;
 
     @GetMapping("/redissonLimiter")
     public String testRedisson() {
@@ -53,6 +57,18 @@ public class RedissonController {
     public String testTokenBucketLimiter() {
         String token = "123456";
         boolean access = tokenBucketService.isLimit(token);
+        if (!access) {
+            LOG.info("token: {} is not limit", token);
+            return "token:" + token + " is not limit";
+        }
+        LOG.info("token: {} is not limit", token);
+        return "token:" + token + " is limit!!!";
+    }
+
+    @GetMapping("/leakyBucketLimiter")
+    public String testLeakyBucketLimiter() {
+        String token = "123456";
+        boolean access = leakyBucketService.isLimit(token);
         if (!access) {
             LOG.info("token: {} is not limit", token);
             return "token:" + token + " is not limit";
