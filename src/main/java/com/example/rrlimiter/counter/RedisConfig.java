@@ -38,11 +38,11 @@ public class RedisConfig {
         // key序列化
         redisTemplate.setKeySerializer(stringSerializer);
         // value序列化
-        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setValueSerializer(stringSerializer);
         // Hash key序列化
         redisTemplate.setHashKeySerializer(stringSerializer);
         // Hash value序列化
-        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setHashValueSerializer(stringSerializer);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }

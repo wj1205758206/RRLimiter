@@ -32,7 +32,7 @@ public class CounterService {
         redisScript.setScriptSource(
                 new ResourceScriptSource(new ClassPathResource("luaScript/counter_script.lua")));
         redisScript.setResultType(Boolean.class);
-        boolean success = (boolean) redisTemplate.execute(redisScript, keys, counts, period);
+        boolean success = (boolean) redisTemplate.execute(redisScript, keys, Integer.toString(counts), Integer.toString(period));
         if (!success) {
             LOG.warn("flow control, limit!");
             return true;
