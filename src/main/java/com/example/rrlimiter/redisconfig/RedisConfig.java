@@ -1,4 +1,4 @@
-package com.example.rrlimiter.counter;
+package com.example.rrlimiter.redisconfig;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
